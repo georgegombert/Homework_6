@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="./assets/styles.css">
+    <title>My Weather</title>
+</head>
+<body>
+    <nav class="dash-header">
+        <h1>Weather Dashboard</h1>
+    </nav>
+
+    <div class="columns myContainer">
+        <!-- Asside for weather search and history -->
+        <div class="column myCol">
+            <div class="columns is-mobile">
+                <div class="column">
+                    <h2 class="myHeading">Search for a city:</h2>
+                </div>
+            </div>
+            <div class="columns is-mobile is-gapless">
+                <form action="" class="column is-three-quarters ">
+                    <input class="input" type="text" placeholder="Search">
+                </form>
+                <button type="submit" class="column button is-info"><i class="fas fa-search"></i></button>
+                <div class="column"></div>
+            </div>
+            <div class="columns is-mobile">
+                <div class="column">
+                    <p class="bd-notification is-info">Weather history</p>
+                </div>
+        </div>
+        <!-- End asside -->
+
+        <!-- Main weather container -->
+        </div>
+        <div class="column is-three-quarters myCol2">
+            <br>
+            <div class="columns is-mobile">
+                <div class="column current-weather">
+                    <p class="bd-notification is-danger">Current Weather</p>
+                </div>
+            </div>
+            <div class="columns is-mobile">
+                <div class="column">
+                    <h2 class="myHeading">5-Day Forcast:</h2>
+                </div>
+            </div>
+            <div class="columns is-mobile">
+                <div class="column forcast-container">
+                    <h3>8/16/19</h3>
+                    <p><i class="fas fa-sun"></i></p>
+                    <p>Temp:</p>
+                    <p>Humidity:</p>
+                </div>
+                <div class="column forcast-container">
+                    <h3>8/16/19</h3>
+                    <p><i class="fas fa-sun"></i></p>
+                    <p>Temp:</p>
+                    <p>Humidity:</p>
+                </div>
+                <div class="column forcast-container">
+                    <h3>8/16/19</h3>
+                    <p><i class="fas fa-sun"></i></p>
+                    <p>Temp:</p>
+                    <p>Humidity:</p>
+                </div>
+                <div class="column forcast-container">
+                    <h3>8/16/19</h3>
+                    <p><i class="fas fa-sun"></i></p>
+                    <p>Temp:</p>
+                    <p>Humidity:</p>
+                </div>
+                <div class="column forcast-container">
+                    <h3>8/16/19</h3>
+                    <p><i class="fas fa-sun"></i></p>
+                    <p>Temp:</p>
+                    <p>Humidity:</p>
+                </div>
+            </div>
+        </div>
+        <!-- End container -->
+    </div>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="./assets/main.js"></script>
+</body>
+</html>
