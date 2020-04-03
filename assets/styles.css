@@ -44,6 +44,21 @@
     border-radius: 5px;
 }
 
+.current-weather h3{
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: black;
+    padding: 1rem .5rem;
+    display: flex;
+    align-items: center;
+}
+
+.current-weather p{
+    font-size: 1rem;
+    color: black;
+    padding: .5rem;
+}
+
 .forcast-container{
     margin: 0px 1rem;
     padding: .5rem;

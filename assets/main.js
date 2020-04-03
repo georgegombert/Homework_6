@@ -1,6 +1,7 @@
 let citySearch ;
 let history = [];
 let apiHistory = [];
+let currentSearch;
 
 localStorage.removeItem('apiHistory');
 
@@ -23,41 +24,48 @@ function appendHistory(){
     }
 }
 
-function getWeatherInfo(){
+function getCurrentWeather(){
     let key = "95ff62280315d2853674fe9ff4f63c2d";
     $.ajax({
         url: "http://api.openweathermap.org/data/2.5/weather?q="+citySearch+"&appid="+key+"",
         method: "GET"
     })
     .then(function(result) {
-        // console.log(result);
         apiHistory.push(result);
-        // console.log(apiHistory);
         localStorage.setItem('apiHistory', JSON.stringify(apiHistory));
+        
+        $("#currentCity").text(result.name);
+        $("#currentIcon").attr({"src" : "http://openweathermap.org/img/wn/"+result.weather[0].icon+"@2x.png", "alt" : "Weather Icon"});
+        $("#currentTemp").text(""+Math.round(((result.main.temp-273.15)*1.8)+32)+" ˙F");
+        $("#currentHumidity").text(""+result.main.humidity+" %");
+        $("#currentWind").text(""+result.wind.speed+" MPH");
+
+        let latitude = result.coord.lat;
+        let longitude = result.coord.lon;
+        $.ajax({
+            url: "http://api.openweathermap.org/data/2.5/uvi?appid="+key+"&lat="+latitude+"&lon="+longitude+"",
+            method: "GET"
+        })
+        .then(function(result) {
+            $("#currentUV").text(result.value);
+        });
     })
     .catch(function(error){
         console.log(error);
     });
 }
 
-function getLocalData(){
-    let test = JSON.parse(localStorage.getItem('apiHistory'));
-    console.log(test);
-}
-
 
 $("#searchButton").click(function(){
     search();
-    getWeatherInfo();
+    getCurrentWeather();
     appendHistory();
-    getLocalData();
 });
 
 $("#citySearch").keydown(function(event){
     if(event.which == 13){
         search();
-        getWeatherInfo();
+        getCurrentWeather();
         appendHistory();
-        getLocalData();
     }
 })
