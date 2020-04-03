@@ -15,6 +15,11 @@
     justify-content: center;
 }
 
+.myButton{
+    background-color:  rgb(0, 127, 246);
+    color: white;
+}
+
 .myCol{
     background-color: rgb(248, 249, 250);
     padding: 1.1rem;
@@ -54,4 +59,18 @@
 }
 .forcast-container p{
     margin: 1rem 0px;
+}
+
+.history-container{
+    background-color: green;
+    border: 3px solid rgb(248, 249, 250);
+    padding: 0px;
+    border-radius: 10px;
+}
+
+.history-div{
+    padding: .75rem 1.2rem;
+    font-size: 1.2rem;
+    background-color: white;
+    border: 1px solid rgb(223, 223, 223);
 }
