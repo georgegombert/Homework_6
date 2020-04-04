@@ -2,6 +2,7 @@ let citySearch ;
 let history = [];
 let apiHistory = [];
 let currentSearch;
+let key = "95ff62280315d2853674fe9ff4f63c2d";
 
 localStorage.removeItem('apiHistory');
 
@@ -25,13 +26,12 @@ function appendHistory(){
 }
 
 function getCurrentWeather(){
-    let key = "95ff62280315d2853674fe9ff4f63c2d";
     $.ajax({
         url: "http://api.openweathermap.org/data/2.5/weather?q="+citySearch+"&appid="+key+"",
         method: "GET"
     })
     .then(function(result) {
-        apiHistory.push(result);
+        apiHistory = apiHistory.push(result);
         localStorage.setItem('apiHistory', JSON.stringify(apiHistory));
         
         $("#currentCity").text(result.name);
@@ -40,21 +40,23 @@ function getCurrentWeather(){
         $("#currentHumidity").text(""+result.main.humidity+" %");
         $("#currentWind").text(""+result.wind.speed+" MPH");
 
-        let latitude = result.coord.lat;
-        let longitude = result.coord.lon;
-        $.ajax({
-            url: "http://api.openweathermap.org/data/2.5/uvi?appid="+key+"&lat="+latitude+"&lon="+longitude+"",
-            method: "GET"
-        })
-        .then(function(result) {
-            $("#currentUV").text(result.value);
-        });
+        getCurrentUV(result.coord.lat, result.coord.lon);
     })
     .catch(function(error){
         console.log(error);
     });
 }
 
+
+function getCurrentUV(latitude, longitude){
+    $.ajax({
+        url: "http://api.openweathermap.org/data/2.5/uvi?appid="+key+"&lat="+latitude+"&lon="+longitude+"",
+        method: "GET"
+    })
+    .then(function(result) {
+        $("#currentUV").text(result.value);
+    });
+}
 
 $("#searchButton").click(function(){
     search();
