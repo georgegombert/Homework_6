@@ -1,26 +1,27 @@
 let citySearch ;
-let history = [];
-let apiHistory = [];
 let currentSearch;
+let apiHistory = JSON.parse(localStorage.getItem("searchHistory"));
 let key = "95ff62280315d2853674fe9ff4f63c2d";
 
-localStorage.removeItem('apiHistory');
+appendHistory();
 
 function search(){
     event.preventDefault();
     citySearch = $("#citySearch").val().trim();
-    console.log(citySearch);
-    history.push(citySearch);
     $("#citySearch").val("");
 }
 
 
 function appendHistory(){
+    if(!apiHistory){
+        apiHistory = apiHistory = [];
+        return;
+    }
     $("#searchHistory").empty();
-    for(city in history){
+    for(city in apiHistory){
         let historyDivNode = $("<div>");
         historyDivNode.addClass("history-div");
-        historyDivNode.text(history[city]);
+        historyDivNode.text(apiHistory[city].name);
         $("#searchHistory").prepend(historyDivNode);
     }
 }
@@ -36,12 +37,14 @@ function getCurrentWeather(){
         $("#currentTemp").text(""+Math.round(((result.main.temp-273.15)*1.8)+32)+" ˙F");
         $("#currentHumidity").text(""+result.main.humidity+" %");
         $("#currentWind").text(""+result.wind.speed+" MPH");
-
+        
+        updateApiHistory(result);
+        appendHistory();
         getCurrentUV(result.coord.lat, result.coord.lon);
         getFutureWeather(result.id);
     })
     .catch(function(error){
-        console.log(error);
+        alert("Please enter valid city");
     });
 }
 
@@ -85,24 +88,42 @@ function getFutureWeather(cityId){
             $("#temp"+day+"").text(Math.round(((result.list[weatherDayIndex[day]].main.temp-273.15)*1.8)+32)+" ˙F");
             $("#humidity"+day+"").text(""+result.list[weatherDayIndex[day]].main.humidity+" %");
         }
-        
-        console.log(result);
     })
     .catch(function(error){
         console.log(error);
     });
 }
 
+function updateApiHistory(result){
+    if(apiHistory.length < 8){
+        apiHistory.push(result);
+        localStorage.setItem("searchHistory", JSON.stringify(apiHistory));
+    } 
+    else{
+        apiHistory = apiHistory.slice(1);
+        apiHistory.push(result);
+        localStorage.setItem("searchHistory", JSON.stringify(apiHistory));
+    }
+}
+
 $("#searchButton").click(function(){
     search();
     getCurrentWeather();
-    appendHistory();
+    // appendHistory();
 });
 
 $("#citySearch").keydown(function(event){
     if(event.which == 13){
         search();
         getCurrentWeather();
-        appendHistory();
+        // appendHistory();
+    }
+})
+
+$("#searchHistory").click(function(event){
+    let selection = event.target;
+    if(selection.className == "history-div"){
+        citySearch = selection.innerText;
+        getCurrentWeather();
     }
 })
