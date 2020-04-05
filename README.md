@@ -13,4 +13,6 @@ This website is built with standard HTML5 and a Bulma css framework. All functio
 
 4/4/20 - Api functionality of the site is completely finished. All displays are working and outputting weather. The last thing left to do on the site is make the history items responsive and create a local storage
 
+4/5/20 - Site completely functional. History buttons all working now and the local storage of the history has been implemented. The last bug to fix right now is the repetition of history items.
+
 ![Screenshot of website](./assets/screenShot.png)
