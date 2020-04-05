@@ -28,12 +28,12 @@ function appendHistory(){
 
 function getCurrentWeather(){
     $.ajax({
-        url: "http://api.openweathermap.org/data/2.5/weather?q="+citySearch+"&appid="+key+"",
+        url: "https://api.openweathermap.org/data/2.5/weather?q="+citySearch+"&appid="+key+"",
         method: "GET"
     })
     .then(function(result) {
         $("#currentCity").text(""+result.name+" ("+moment().format("M/D/YY")+")");
-        $("#currentIcon").attr({"src" : "http://openweathermap.org/img/wn/"+result.weather[0].icon+"@2x.png", "alt" : "Weather Icon"});
+        $("#currentIcon").attr({"src" : "https://openweathermap.org/img/wn/"+result.weather[0].icon+"@2x.png", "alt" : "Weather Icon"});
         $("#currentTemp").text(""+Math.round(((result.main.temp-273.15)*1.8)+32)+" ˙F");
         $("#currentHumidity").text(""+result.main.humidity+" %");
         $("#currentWind").text(""+result.wind.speed+" MPH");
@@ -51,7 +51,7 @@ function getCurrentWeather(){
 
 function getCurrentUV(latitude, longitude){
     $.ajax({
-        url: "http://api.openweathermap.org/data/2.5/uvi?appid="+key+"&lat="+latitude+"&lon="+longitude+"",
+        url: "https://api.openweathermap.org/data/2.5/uvi?appid="+key+"&lat="+latitude+"&lon="+longitude+"",
         method: "GET"
     })
     .then(function(result) {
@@ -76,7 +76,7 @@ function getCurrentUV(latitude, longitude){
 
 function getFutureWeather(cityId){
     $.ajax({
-        url: "http://api.openweathermap.org/data/2.5/forecast?id="+cityId+"&appid="+key+"",
+        url: "https://api.openweathermap.org/data/2.5/forecast?id="+cityId+"&appid="+key+"",
         method: "GET"
     })
     .then(function(result){
@@ -84,7 +84,7 @@ function getFutureWeather(cityId){
         for(day in weatherDayIndex){
             let dateFormatted = moment(result.list[weatherDayIndex[day]].dt_txt).format("M/D/YY");
             $("#futureDate"+day+"").text(dateFormatted);
-            $("#futureIcon"+day+"").attr({"src" : "http://openweathermap.org/img/wn/"+result.list[weatherDayIndex[day]].weather[0].icon+"@2x.png", "alt" : "Weather Icon", "class" : "future-icon"});
+            $("#futureIcon"+day+"").attr({"src" : "https://openweathermap.org/img/wn/"+result.list[weatherDayIndex[day]].weather[0].icon+"@2x.png", "alt" : "Weather Icon", "class" : "future-icon"});
             $("#temp"+day+"").text(Math.round(((result.list[weatherDayIndex[day]].main.temp-273.15)*1.8)+32)+" ˙F");
             $("#humidity"+day+"").text(""+result.list[weatherDayIndex[day]].main.humidity+" %");
         }
