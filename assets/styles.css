@@ -15,28 +15,28 @@
     justify-content: center;
 }
 
-.myButton{
-    background-color:  rgb(0, 127, 246);
-    color: white;
+.wrapper{
+    margin: auto;
 }
 
-.myCol{
+.search-container{
     background-color: rgb(248, 249, 250);
     padding: 1.1rem;
 }
 
-.myCol2{
-    padding: 2rem;
-    height: 85vh;
-}
-
-.myHeading{
+.search-heading{
     font-size: 1.5rem;
     color: black;
 }
 
-.myContainer{
-    margin: auto;
+.my-search-button{
+    background-color:  rgb(0, 127, 246);
+    color: white;
+}
+
+.weather-container{
+    padding: 2rem;
+    height: 85vh;
 }
 
 .current-weather{

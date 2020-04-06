@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/assets//favicon.ico" rel="icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">    
     <link rel="stylesheet" href="./assets/styles.css">
@@ -13,12 +14,12 @@
         <h1>Weather Dashboard</h1>
     </nav>
 
-    <div class="columns myContainer">
+    <div class="columns wrapper">
         <!-- Asside for weather search and history -->
-        <div class="column myCol">
+        <div class="column search-container">
             <div class="columns is-mobile">
                 <div class="column">
-                    <h2 class="myHeading">Search for a city:</h2>
+                    <h2 class="search-heading">Search for a city:</h2>
                 </div>
             </div>
             <div class="columns is-mobile is-gapless">
@@ -26,19 +27,19 @@
                     <label for="citySearch"></label>
                     <input class="input" type="text" id="citySearch" placeholder="Search">
                 </form>
-                <button type="submit" class="column button myButton" id="searchButton" ><i class="fas fa-search"></i></button>
+                <button type="submit" class="column button my-search-button" id="searchButton" ><i class="fas fa-search"></i></button>
                 <div class="column"></div>
             </div>
             <div class="columns is-mobile">
                 <div class="column history-container" id="searchHistory">
                     <p class="bd-notification is-info">Weather history</p>
                 </div>
+            </div>
         </div>
-        <!-- End asside -->
-<!-- for test -->
+        <!-- End search -->
+
         <!-- Main weather container -->
-        </div>
-        <div class="column is-three-quarters myCol2">
+        <div class="column is-three-quarters weather-container">
             <br>
             <div class="columns is-mobile">
                 <div class="column current-weather">
@@ -88,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <!-- End container -->
+        <!-- End main weather -->
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>    
